@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "TAOBAO Helper",
+  "name": "JD Helper",
   "version": "1.0",
-  "description": "淘宝抢购助手",
+  "description": "京东抢购助手",
   "action": {
     "default_icon": "icon.png"
   },
@@ -17,11 +17,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://cart.taobao.com/*",
-        "https://buy.taobao.com/*",
-        "https://cart.tmall.com/*",
-        "https://buy.tmall.com/*",
-        "https://detail.tmall.com/*"
+        "https://item.yiyaojd.com/*"
       ],
       "js": [
         "background.js"

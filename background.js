@@ -88,19 +88,7 @@ function start() {
   let addToCart = () => {
     cartStatus = true
 
-    cartTimer = setInterval(() => {
-      for (let btn of document.querySelectorAll("button")) {
-        if (btn.innerHTML.includes('加入购物车')) {
-          console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 可以添加到购物车..`)
-          btn.click()
-          btn.click()
-          btn.click()
-
-          clearInterval(cartTimer)
-          break
-        }
-      }
-    }, 100)
+    document.getElementById('InitCartUrl').click()
   }
 
   // 立即购买
@@ -128,7 +116,7 @@ function start() {
     let nowTime = new Date().getTime()
     if (nowTime >= startTime) {
       let href = window.location.href
-      if (href.indexOf('detail.tmall.com') !== -1) {
+      if (href.indexOf('item.') !== -1) {
         if (cartStatus === false) {
           console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 准备添加购物车`)
           addToCart()
