@@ -1,7 +1,8 @@
 #helper-setting-button {
   position: fixed;
-  right: 6px;
+  right: 50px;
   top: 54px;
+  z-index: 1000000000;
   cursor: pointer;
   user-select: none;
   width: 80px;

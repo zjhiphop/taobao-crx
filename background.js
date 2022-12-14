@@ -89,6 +89,24 @@ function start() {
     cartStatus = true
 
     cartTimer = setInterval(() => {
+      let $add = document.querySelector('.tb-btn-add > a')
+
+      if ($add) {
+        console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 可以添加到购物车`)
+
+        for (let sku of document.querySelectorAll(".J_Prop")) {
+          sku.querySelector('li').click()
+        }
+
+        // $add.click()
+        setTimeout(() => {
+          buyAtOnce()
+        }, 1000)
+
+        clearInterval(cartTimer)
+        return
+      }
+
       for (let btn of document.querySelectorAll("button")) {
         if (btn.innerHTML.includes('加入购物车')) {
           console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 可以添加到购物车..`)
@@ -96,6 +114,7 @@ function start() {
           btn.click()
           btn.click()
 
+          buyAtOnce()
           clearInterval(cartTimer)
           break
         }
@@ -108,6 +127,16 @@ function start() {
     cartStatus = true
 
     buyTimer = setInterval(() => {
+      let $buy = document.querySelector('.tb-btn-buy > a')
+
+      if ($buy) {
+        console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 立即购买`)
+        $buy.click()
+
+        clearInterval(buyTimer)
+        return
+      }
+
       for (let btn of document.querySelectorAll("button")) {
         if (btn.innerHTML.includes('立即购买')) {
           console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 立即购买`)
@@ -128,11 +157,10 @@ function start() {
     let nowTime = new Date().getTime()
     if (nowTime >= startTime) {
       let href = window.location.href
-      if (href.indexOf('detail.tmall.com') !== -1) {
+      if (href.includes('detail.tmall.com') || href.includes('item.taobao.com')) {
         if (cartStatus === false) {
           console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 准备添加购物车`)
           addToCart()
-          buyAtOnce()
         }
       }
       // 判断当前所在页面

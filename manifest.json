@@ -21,7 +21,8 @@
         "https://buy.taobao.com/*",
         "https://cart.tmall.com/*",
         "https://buy.tmall.com/*",
-        "https://detail.tmall.com/*"
+        "https://detail.tmall.com/*",
+        "https://item.taobao.com/*"
       ],
       "js": [
         "background.js"
