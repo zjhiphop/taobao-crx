@@ -54,7 +54,11 @@ function start() {
     settleStatus = true
 
     // 尝试选中第一个
-    document.querySelector('[name="checkShop"].jdcheckbox').click()
+    let $checkProd = document.querySelector('[name="checkShop"].jdcheckbox')
+
+    if ($checkProd) {
+      $checkProd.click()
+    }
 
     settleTimer = setInterval(() => {
       let go_button = document.querySelector('.common-submit-btn')
