@@ -53,6 +53,9 @@ function start() {
   let settleFun = () => {
     settleStatus = true
 
+    // 尝试选中第一个
+    document.querySelector('[name="checkShop"].jdcheckbox').click()
+
     settleTimer = setInterval(() => {
       let go_button = document.querySelector('.common-submit-btn')
       if (go_button) {
@@ -63,6 +66,10 @@ function start() {
         console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 购物车中未选择商品 无法抢购`)
       }
     }, 10)
+
+    setTimeout(() => {
+      location.reload()
+    }, 5000)
   }
 
   /**
@@ -73,6 +80,7 @@ function start() {
 
     let submitTimer = setInterval(() => {
       let submit_button = document.querySelector("#order-submit")
+
       if (submit_button) {
         console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:nmMM:SS', new Date())} 开始结算`)
         clearInterval(submitTimer)
@@ -89,6 +97,10 @@ function start() {
     cartStatus = true
 
     document.getElementById('InitCartUrl').click()
+
+    setTimeout(() => {
+      location.reload()
+    }, 5000)
   }
 
   /**
