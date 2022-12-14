@@ -54,8 +54,8 @@ function start() {
     settleStatus = true
 
     settleTimer = setInterval(() => {
-      let go_button = document.getElementById('J_Go')
-      if (go_button && go_button.className.indexOf('submit-btn-disabled') === -1) {
+      let go_button = document.querySelector('.common-submit-btn')
+      if (go_button) {
         console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 开始抢购`)
         clearInterval(settleTimer)
         go_button.click()
@@ -72,7 +72,7 @@ function start() {
     submitStatus = true
 
     let submitTimer = setInterval(() => {
-      let submit_button = document.querySelector(".go-btn")
+      let submit_button = document.querySelector("#order-submit")
       if (submit_button) {
         console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:nmMM:SS', new Date())} 开始结算`)
         clearInterval(submitTimer)
@@ -91,23 +91,6 @@ function start() {
     document.getElementById('InitCartUrl').click()
   }
 
-  // 立即购买
-  let buyAtOnce = () => {
-    cartStatus = true
-
-    buyTimer = setInterval(() => {
-      for (let btn of document.querySelectorAll("button")) {
-        if (btn.innerHTML.includes('立即购买')) {
-          console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 立即购买`)
-          btn.click()
-
-          clearInterval(buyTimer)
-          break
-        }
-      }
-    }, 150)
-  }
-
   /**
    * 主入口
    */
@@ -116,21 +99,31 @@ function start() {
     let nowTime = new Date().getTime()
     if (nowTime >= startTime) {
       let href = window.location.href
+
       if (href.indexOf('item.') !== -1) {
         if (cartStatus === false) {
           console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 准备添加购物车`)
           addToCart()
-          buyAtOnce()
         }
       }
       // 判断当前所在页面
-      else if (href.indexOf('cart') !== -1) {
+      else if (href.indexOf('cart.jd.com/addToCart') !== -1) {
+        if (document.querySelector('.btn-addtocart')) {
+          document.querySelector('.btn-addtocart').click()
+          console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 跳转到购物车页面...`)
+          return
+        }
+
+      }
+      else if (href.indexOf('cart.jd.com/cart') !== -1) {
         // 购物车
         if (settleStatus === false) {
           console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 准备抢购`)
+
           settleFun()
         }
-      } else if (href.indexOf('buy') !== -1) {
+      }
+      else if (href.indexOf('trade') !== -1) {
         // 结算
         if (submitStatus === false) {
           console.log(`当前时间为：${dateFormat('YYYY-mm-dd HH:MM:SS', new Date())} 准备结算`)

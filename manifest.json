@@ -17,7 +17,10 @@
   "content_scripts": [
     {
       "matches": [
-        "https://item.yiyaojd.com/*"
+        "https://item.yiyaojd.com/*",
+        "https://item.jd.com/*",
+        "https://cart.jd.com/*",
+        "https://trade.jd.com/*"
       ],
       "js": [
         "background.js"
