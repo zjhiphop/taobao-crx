@@ -20,7 +20,8 @@
         "https://item.yiyaojd.com/*",
         "https://item.jd.com/*",
         "https://cart.jd.com/*",
-        "https://trade.jd.com/*"
+        "https://trade.jd.com/*",
+        "https://item.jkcsjd.com/*"
       ],
       "js": [
         "background.js"
